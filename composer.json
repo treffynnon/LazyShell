@@ -1,0 +1,43 @@
+{
+    "name": "treffynnon/lazyshell",
+    "description": "Run shell commands from PHP the lazy way",
+    "type": "library",
+    "keywords": ["console", "command line", "command", "shell", "wrapper"],
+    "homepage": "https://github.com/treffynnon/LazyShell",
+    "license": "BSD",
+    "authors": [
+        {
+            "name": "Simon Holywell",
+            "email": "treffynnon@php.net",
+            "homepage": "https://www.simonholywell.com"
+        }
+    ],
+    "require": {
+        "php": ">5.6",
+        "treffynnon/cmdwrap": "dev-master"
+    },
+    "require-dev": {
+        "squizlabs/php_codesniffer": "^2.5",
+        "sebastian/phpcpd": "^2.0",
+        "phpunit/phpunit": "^5.2"
+    },
+    "autoload": {
+        "psr-4": {
+            "Treffynnon\\LazyShell\\": "src/"
+        }
+    },
+    "scripts": {
+        "lint": [
+            "/usr/bin/env php -l src",
+            "vendor/bin/phpcs --standard=phpcs.xml --extensions=php .",
+            "vendor/bin/phpcpd src"
+        ],
+        "test": [
+            "@lint",
+            "vendor/bin/phpunit -v integration"
+        ],
+        "post-install-cmd": "composer test",
+        "post-update-cmd": "composer test",
+        "post-autoload-dump": "composer test"
+    }
+}
